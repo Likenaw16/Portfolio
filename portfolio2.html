@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="icon" type="image/png" href="images/Icons/favicon.png">
+  <title>Likenaw Bamlaku | Portfolio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+      background: #ffffff;
+      color: #333;
+    }
+    /* Progress bar container */
+    .progress-container {
+      width: 100%;
+      height: 8px;
+      background: #e0e0e0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    /* The actual progress bar */
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #007bff;
+      transition: width 0.1s ease-out;
+    }
+
+    /* Example content */
+
+.hero-header {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background-image: url('images/banner.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white; /* text color */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4); /* Dark transparent overlay */
+  z-index: 1;
+}
+    .header {
+    width:100%;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+    }
+
+    .navbar {
+      background: #ecf0f1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: relative;
+    }
+    .navbar .hamburger {
+  margin-left: auto;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+       margin-left: auto;
+    }
+
+    .nav-links li {
+      list-style: none;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #01090b;
+      font-weight: normal;
+      transition: color 0.3s;
+   
+
+    }
+
+    .nav-links li a:hover {
+      background-color: rgb(230, 165, 140);
+      color: black;
+        padding: 6px 6px;             /* Spacing inside the button */
+  border-radius: 10px;           /* Rounded corners */
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      background: none;
+      border: none;
+      gap: 5px;
+    }
+
+    .bar {
+      width: 25px;
+      height: 3px;
+      background-color: black;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: absolute;
+        top: 80px;
+        right: 0;
+        background: #e9e4e4;
+        flex-direction: column;
+        width: 200px;
+        display: none;
+        padding: 1rem;
+      }
+
+      .nav-links li a {
+        color: rgb(24, 3, 60);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+    }
+    .about-container {
+      max-width: 1000px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 15px;
+      padding: 70px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .about-container:hover {
+      transform: scale(1.01);
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.8;
+      text-align: justify;
+      animation: fadeIn 1.2s ease-in-out;
+    }
+        @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    section {
+      padding: 1rem;
+      max-width: 1000px;
+      margin: auto;
+              }
+    .skills-section {
+      max-width: 1000px;
+      margin: auto;
+      margin-top: 30px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .skill-card {
+      flex: 1 1 150px;
+      max-width: 150px;
+      padding: 20px;
+      text-align: center;
+      background: #fafafa;
+      border-radius: 10px;
+      transition: 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    }
+
+    .skill-card i {
+      font-size: 2.5rem;
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    .skill-name {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+
+    .photoshop-icon {
+      font-family: sans-serif;
+      font-weight: bold;
+      font-size: 2rem;
+      color: #31A8FF;
+      background-color: #001E36;
+      padding: 10px;
+      border-radius: 5px;
+      display: inline-block;
+    }
+
+    .office-icon {
+      font-size: 2rem;
+      color: #D83B01;
+    }
+    .projects ul {
+      list-style: none;
+      padding: 0;
+    }
+    .projects li {
+      background: #ecf0f1;
+      margin: 0.5rem 0;
+      padding: 1rem;
+      border-left: 5px solid #2980b9;
+    }
+
+    footer {
+      text-align: center;
+      background: #4a6d7c;
+      color: white;
+      padding: 1rem;
+      margin-top: 0rem;
+    }
+
+.img-slider{
+  position: relative;
+  width: 900px;
+  height: 500px;
+  margin: 10px;
+  background: #1D212B;
+}
+
+.img-slider .slide{
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  clip-path: circle(0% at 0 50%);
+}
+
+.img-slider .slide.active{
+  clip-path: circle(150% at 0 50%);
+  transition: 2s;
+  transition-property: clip-path;
+}
+
+.img-slider .slide img{
+  z-index: 1;
+  width: 100%;
+  height:500px;
+  border-radius: 5px;
+}
+
+.img-slider .navigation{
+  z-index: 2;
+  position: absolute;
+  display: flex;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.img-slider .navigation .btn{
+  background: rgb(255, 255, 255);
+  width: 12px;
+  height: 12px;
+  margin: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.img-slider .navigation .btn.active{
+  background: #2696E9;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 1326px){
+  .img-slider{
+    width: 600px;
+    height: 375px;
+  }
+
+  .img-slider .navigation{
+    bottom: 25px;
+  }
+
+  .img-slider .navigation .btn{
+    width: 10px;
+    height: 10px;
+    margin: 8px;
+  }
+}
+
+@media (max-width: 710px){
+
+  .navbar-brand {
+    font-size: 20px;
+    top:20px;
+    left:15px;
+  }
+
+  .img-slider{
+    width: 400px;
+    height: 200px;
+    top: 20px;
+  }
+
+
+
+  .img-slider .navigation{
+    bottom: 15px;
+  }
+
+  .img-slider .navigation .btn{
+    width: 8px;
+    height: 8px;
+    margin: 6px;
+  }
+}
+
+@media (max-width: 420px){
+  .img-slider{
+    width: 320px;
+    height: 200px;
+  }
+
+  .img-slider .navigation{
+    bottom: 10px;
+  }
+}
+    .gallery-container {
+      max-width: 1000px;
+      margin: auto;
+      margin-top: 30px;
+      background: #fff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+   .image-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .image-card {
+      width: 400px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      background: #fafafa;
+      transition: transform 0.3s ease;
+    }
+
+    .image-card:hover {
+      transform: scale(1.03);
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .image-caption {
+      padding: 10px 15px;
+      text-align: center;
+      font-weight: 600;
+      color: #555;
+    }
+    .social-icons {
+      position: fixed;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      padding: 10px;
+      z-index: 999;
+    }
+
+    .social-icons a {
+      color: white;
+      background-color: #4a6d7c; /* Matching color tone */
+      text-align: center;
+      padding: 12px;
+      border-radius: 0 10px 10px 0;
+      width: 40px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      background-color: #f8444d;
+    }
+ .form-container {
+      max-width: 900px;
+      margin: auto;
+      margin-top: 30px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .form-row {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .left-column, .right-column {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    textarea {
+      height: 100%;
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      border: none;
+      background-color: #403af0;
+      color: white;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3b5968;
+    }
+    .social-container {
+      background-color: #f1f1f1;
+      padding: 5px 0;
+      text-align: center;
+    }
+
+    .social-iconsfooter a {
+      margin: 0 10px;
+      text-decoration: none;
+      font-size: 12px;
+      color: #123eef;
+      transition: color 0.3s;
+    }
+
+    .social-iconsfooter a:hover {
+      color: #1e90ff;
+    }
+  </style>
+</head>
+<body>
+    <!-- Progress bar -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+
+
+  
+
+<div class="hero-header">
+    <div class="overlay"></div>
+  <div class="header">
+    <img src="images/lb.jpg" alt="Profile Photo" class="profile-img" />
+    <h2>Likenaw Bamlaku</h2>
+    <p>Junior Web Developer | Junior Graphic Designer | Eager to learn </p>
+  </div>
+</div>
+</div>
+  <nav class="navbar">
+    <h2 style="display:none;">Menu</h2> <!-- For screen readers -->
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#Certificates">Certificates</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </nav>
+<div class="social-icons">
+    <a href="https://web.facebook.com/likenaw.bamlaku.7" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://x.com/blikenaw" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.linkedin.com/in/likenaw-bamlaku-8b6aa8139/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://www.instagram.com/likenawbamlaku/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+  </div>
+  <section id="about">
+     <h2>About Me</h2>
+<div class="about-container">
+        <p class="about-text">Hello! I'm Likenaw Bamlaku, a passionate junior web developer from Ethiopia. I enjoy building web applications that are simple, clean, and responsive. I'm currently learning full-stack development. I have a background of Information Technology both in first degree and master of science. currently I am an acadamic techinical assistant in Debre Markos University. furthermore I am a passionate junior graphic designer specially designing social media posts, event flyers, tumbnail designs and looking for internship opportunities, freelance works.please feel free to contact me.</p>
+ </div>
+  </section>
+  <section id="skills">
+<h2>My Skills: </h2>
+  <div class="skills-section">
+    <div class="skills-grid">
+      <div class="skill-card">
+        <i class="fab fa-html5"></i>
+        <div class="skill-name">HTML</div>
+      </div>
+      <div class="skill-card">
+        <i class="fab fa-css3-alt"></i>
+        <div class="skill-name">CSS</div>
+      </div>
+      <div class="skill-card">
+        <i class="fab fa-js-square"></i>
+        <div class="skill-name">JavaScript</div>
+      </div>
+      <div class="skill-card">
+        <i class="fab fa-python"></i>
+        <div class="skill-name">Python</div>
+      </div>
+      <div class="skill-card">
+        <i class="fab fa-react"></i>
+        <div class="skill-name">React</div>
+      </div>
+      <div class="skill-card">
+        <i class="fab fa-git-alt"></i>
+        <div class="skill-name">Git</div>
+      </div>
+      <div class="skill-card">
+        <span class="photoshop-icon">Ps</span>
+        <div class="skill-name">Photoshop</div>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-file-word office-icon"></i>
+        <div class="skill-name">MS Word</div>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-file-excel office-icon"></i>
+        <div class="skill-name">MS Excel</div>
+      </div>
+      <div class="skill-card">
+        <i class="fas fa-file-powerpoint office-icon"></i>
+        <div class="skill-name">MS PowerPoint</div>
+      </div>
+    </div>
+  </div>
+</section>
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+    <ul>
+      <li><strong>Portfolio Website</strong> — A simple personal website built using HTML and CSS.</li>
+      <li><strong>Weather App</strong> — A JavaScript-based weather app using OpenWeatherMap API.</li>
+    </ul>
+  </section>
+<section>
+  <div class="img-slider">
+      <div class="slide active">
+        <img src="images/B BirthDay.jpg" alt="">
+      </div>
+      <div class="slide">
+        <img src="images/political campaign.jpg" alt="">
+      </div>
+      <div class="slide">
+        <img src="images/abronet.jpg" alt="">
+      </div>
+      <div class="slide">
+        <img src="images/BD1.jpg" alt="">
+      </div>
+      <div class="slide">
+        <img src="images/party flyer.jpg" alt="">
+
+      </div>
+            <div class="slide">
+        <img src="images/glow effect.jpg" alt="">
+      </div>
+      <div class="navigation">
+        <div class="btn active"></div>
+        <div class="btn"></div>
+        <div class="btn"></div>
+        <div class="btn"></div>
+        <div class="btn"></div>
+        <div class="btn"></div>
+      </div>
+    </div>
+    </section>
+<section id="Certificates">
+    <h2>List of Certificates</h2>
+     <div class="gallery-container">
+        <div class="image-grid">
+      <div class="image-card">
+        <img src="certificates/programming.jpg" alt="Project 1">
+        <div class="image-caption">Foundamentals of Programming</div>
+      </div>
+      <div class="image-card">
+        <img src="certificates/Machine learning.jpg" alt="Project 2">
+        <div class="image-caption">Foundamentals of Machine Learing </div>
+      </div>
+      <div class="image-card">
+        <img src="certificates/E learning.jpg" alt="Project 3">
+        <div class="image-caption">E-learning </div>
+      </div>
+      <div class="image-card">
+        <img src="certificates/Photoshop.jpg" alt="Project 3">
+        <div class="image-caption">Foundamentals of Photoshop</div>
+      </div>
+      <div class="image-card">
+        <img src="certificates/Digital marketing.jpg" alt="Project 3">
+        <div class="image-caption">Digital marketing</div>
+      </div>
+      <!-- Add more image cards as needed -->
+    </div>
+  </div>
+  </section>
+  <section id="contact">
+    <h2>Contact US:</h2>
+    <div class="form-container">
+    <form>
+      <div class="form-row">
+        <!-- Left column: Name, Phone, Email -->
+        <div class="left-column">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your name">
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" placeholder="Your phone number">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Your email address">
+          </div>
+        </div>
+
+        <!-- Right column: Message -->
+        <div class="right-column">
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Your message here..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+
+  </section>
+<div class="social-container">
+    <div class="social-iconsfooter">
+      <a href=""><img src="images/icons/phone.png"width="20px"height="10px" alignment="center">+251931842560</a>
+      <a href><img src="images/Icons/mail.png"width="20px"height="10px"alignment="center">likenawbamlaku@gmail.com</a>
+      <a href="https://web.facebook.com/likenaw.bamlaku.7"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/blikenaw"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.instagram.com/likenawbamlaku/"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/likenaw-bamlaku-8b6aa8139/"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+  <footer>
+    <p>© 2025 Likenaw Bamlaku. All rights reserved. </p>
+  </footer>
+
+  <script>
+     window.onscroll = function () {
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      let scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      let scrollPercent = (scrollTop / scrollHeight) * 100;
+      document.getElementById("progress-bar").style.width = scrollPercent + "%";
+    };
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    var slides = document.querySelectorAll('.slide');
+    var btns = document.querySelectorAll('.btn');
+    let currentSlide = 1;
+
+    // Javascript for image slider manual navigation
+    var manualNav = function(manual){
+      slides.forEach((slide) => {
+        slide.classList.remove('active');
+
+        btns.forEach((btn) => {
+          btn.classList.remove('active');
+        });
+      });
+
+      slides[manual].classList.add('active');
+      btns[manual].classList.add('active');
+    }
+
+    btns.forEach((btn, i) => {
+      btn.addEventListener("click", () => {
+        manualNav(i);
+        currentSlide = i;
+      });
+    });
+
+    // Javascript for image slider autoplay navigation
+    var repeat = function(activeClass){
+      let active = document.getElementsByClassName('active');
+      let i = 1;
+
+      var repeater = () => {
+        setTimeout(function(){
+          [...active].forEach((activeSlide) => {
+            activeSlide.classList.remove('active');
+          });
+
+        slides[i].classList.add('active');
+        btns[i].classList.add('active');
+        i++;
+
+        if(slides.length == i){
+          i = 0;
+        }
+        if(i >= slides.length){
+          return;
+        }
+        repeater();
+      }, 10000);
+      }
+      repeater();
+    }
+    repeat();
+  </script>
+</body>
+</html>
